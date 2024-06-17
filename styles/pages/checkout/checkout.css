@@ -7,8 +7,8 @@
   margin-bottom: 100px;
 
   /* margin-left: auto;
-     margin-right auto;
-     Is a trick for centering an element horizontally
+    margin-right auto;
+    Is a trick for centering an element horizontally
      without needing a container. */
   margin-left: auto;
   margin-right: auto;
@@ -171,7 +171,7 @@
 .payment-summary-row {
   display: grid;
   /* 1fr auto; means the width of the 2nd column will be
-     determined by the elements inside the column (auto).
+    determined by the elements inside the column (auto).
      The 1st column will take up the remaining space. */
   grid-template-columns: 1fr auto;
 
@@ -208,4 +208,29 @@
 
   margin-top: 11px;
   margin-bottom: 15px;
+}
+
+.quantity-input {
+  width: 30px;
+  display: none;
+}
+
+.save-quantity-link {
+  display: none;
+}
+
+.is-editing-quantity .quantity-input {
+  display: initial;
+}
+
+.is-editing-quantity .save-quantity-link {
+  display: initial;
+}
+
+.is-editing-quantity .quantity-label {
+  display: none;
+}
+
+.is-editing-quantity .update-quantity-link {
+  display: none;
 }
