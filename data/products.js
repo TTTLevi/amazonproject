@@ -56,7 +56,21 @@ class Clothing extends Product {
   }
 }
 
+/*
+const date = new Date();
+console.log(date.toLocaleDateString());
+*/
 
+/**
+ * Inside a method, "this" point to the outer object
+ * Inside a function, this = undefined, But can change
+ * Arrow function, do not change value of "this"
+ */
+
+// function logThis(){
+//   console.log(this);
+// }
+// logThis.call('hello');
 
 export const products = [
   {
