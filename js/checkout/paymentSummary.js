@@ -88,7 +88,7 @@ export function renderPaymentSummary(){
         console.log('unexpected error')
       }
       // Extra feature: make the cart empty after creating an order.
-      resetCart();
+      // resetCart();
       window.location.href = 'orders.html'
     })
 }
