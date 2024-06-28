@@ -37,17 +37,32 @@ export function addToCart(productId) {
   const quantitySelector = document.querySelector(`.js-quantity-selector-${productId}`);
   const quantity = Number(quantitySelector.value);
 
-  if(matchingItem){
-    matchingItem.quantity += quantity;
+  if(quantity !== null){
+    if(matchingItem){
+      matchingItem.quantity += quantity;
+    }
+    else{
+      cart.push({
+        productId: productId,
+        quantity: quantity,
+        deliveryOptionId: '1'
+      });
+    }
   }
-  else{
-    cart.push({
-      productId: productId,
-      quantity: quantity,
-      deliveryOptionId: '1'
-    });
+  else {
+    if(matchingItem){
+      // matchingItem.quantity += quantity;
+      matchingItem.quantity += 1;
+    }
+    else{
+      cart.push({
+        productId: productId,
+        // quantity: quantity,
+        quantity: 1,
+        deliveryOptionId: '1'
+      });
+    }
   }
-
   saveToStorage();
 }
 
@@ -103,6 +118,13 @@ export function updateDeliveryOption(productId, deliveryOptionId){
   saveToStorage();
 }
 
+export async function loadCartFetch(){
+  const promise = await fetch('https://supersimplebackend.dev/cart');
+  const text = await response.text();
+  console.log(text);
+  return text;
+}
+
 export function loadCart(fun) {
   const xhr = new XMLHttpRequest();
 
@@ -113,4 +135,10 @@ export function loadCart(fun) {
 
   xhr.open('GET','https://supersimplebackend.dev/cart');
   xhr.send();
+}
+
+// Extra feature: make the cart empty after creating an order.
+export function resetCart() {
+  cart = [];
+  saveToStorage();
 }
