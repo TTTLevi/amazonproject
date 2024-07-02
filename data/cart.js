@@ -33,33 +33,37 @@ export function addToCart(productId) {
       matchingItem = cartItem;
     }
   });
-
-    // const quantitySelector = document.querySelector(`.js-quantity-selector-${productId}`);
-    // const quantity = Number(quantitySelector.value);
-
-    // if(matchingItem){
-    //   matchingItem.quantity += quantity;
-    // }
-    // else{
-    //   cart.push({
-    //     productId: productId,
-    //     quantity: quantity,
-    //     deliveryOptionId: '1'
-    //   });
-    // }
-  if(matchingItem){
-    // matchingItem.quantity += quantity;
-    matchingItem.quantity += 1;
+  try {
+    const quantitySelector = document.querySelector(`.js-quantity-selector-${productId}`);
+    const quantity = Number(quantitySelector.value);
+    if(quantity != null){
+      if(matchingItem){
+        matchingItem.quantity += quantity;
+      }
+      else{
+        cart.push({
+          productId: productId,
+          quantity: quantity,
+          deliveryOptionId: '1'
+        });
+      }
+    }
   }
-  else{
-    cart.push({
-      productId: productId,
-      // quantity: quantity,
-      quantity: 1,
-      deliveryOptionId: '1'
-    });
+  catch {
+    console.error('giá trị rỗng');
+    if(matchingItem){
+      // matchingItem.quantity += quantity;
+      matchingItem.quantity += 1;
+    }
+    else{
+      cart.push({
+        productId: productId,
+        // quantity: quantity,
+        quantity: 1,
+        deliveryOptionId: '1'
+      });
+    }
   }
-  
   saveToStorage();
 }
 
